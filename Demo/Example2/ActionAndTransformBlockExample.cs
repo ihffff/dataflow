@@ -44,10 +44,10 @@
         {
             for (var i = 0; i < 100; i++)
             {
-                await this.buffer.SendAsync(i);
+                await this.transform.SendAsync(i);
             }
 
-            this.buffer.Complete();
+            this.transform.Complete();
 
             await this.action.Completion;
         }

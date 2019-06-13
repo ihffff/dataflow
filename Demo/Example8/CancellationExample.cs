@@ -1,4 +1,4 @@
-﻿namespace Demo.Example6
+﻿namespace Demo.Example8
 {
     using System;
     using System.Threading;
@@ -66,9 +66,17 @@
 
             this.buffer.Complete();
 
-            await Task.WhenAny(
-                this.action.Completion, 
-                Task.Delay(TimeSpan.FromSeconds(5)).ContinueWith(x => this.cts.Cancel()));
+            try
+            {
+                await Task.WhenAny(
+                    this.action.Completion,
+                    Task.Delay(TimeSpan.FromSeconds(5)).ContinueWith(x => throw new Exception()));
+            }
+            catch (Exception e)
+            {
+                this.cts.Cancel();
+            }
+            
         }
 
         private static void Log(string message, ConsoleColor color = ConsoleColor.White)

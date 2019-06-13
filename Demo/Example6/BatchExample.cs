@@ -1,4 +1,4 @@
-﻿namespace Demo.Example4
+﻿namespace Demo.Example6
 {
     using System;
     using System.Linq;
